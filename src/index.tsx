@@ -81,6 +81,7 @@ const main = async () => {
 
       root.render(
         <SendTask
+          key={e.uuid}
           content={content}
           projects={allProjects}
           labels={allLabels}
@@ -120,6 +121,7 @@ const main = async () => {
 
       root.render(
         <SendTask
+          key={e.uuid}
           content={content}
           projects={allProjects}
           labels={allLabels}
