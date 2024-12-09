@@ -115,6 +115,15 @@ export const callSettings = async (projects: string[], labels: string[]) => {
       description:
         'If set to true, all retrieved tasks will have their creation date and time appended.',
     },
+    {
+      key: 'retrieveAppendLabels',
+      type: 'boolean',
+      default: false,
+      title: 'Append task labels',
+      description:
+        'If set to true, all retrieved tasks will have their tags appended.',
+    },
   ]
+
   logseq.useSettingsSchema(settings)
 }

@@ -58,6 +58,15 @@ ${getDeadlineDateDay(new Date(task.due.date))}`
           ? `TODO ${content}`
           : content
 
+        // Handle append tags
+        content = logseq.settings!.retrieveAppendLabels
+          ? `${content}${task.labels
+              .map((l) => {
+                return ` [[${l}]]`
+              })
+              .join(' ')}`
+          : content
+
         // Handle created at
         const preferredDateFormat = (await logseq.App.getUserConfigs())
           .preferredDateFormat
@@ -158,6 +167,11 @@ export const retrieveTasks = async (
       default:
         break
     }
+
+    if (logseq.settings!.retrieveClearTasks) {
+      await deleteAllTasks(allTasks)
+    }
+
     logseq.UI.closeMsg(msgKey)
 
     return allTasks
